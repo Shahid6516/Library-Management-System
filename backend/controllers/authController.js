@@ -12,6 +12,7 @@ export const register = async (req, res) => {
         message: `User already exists`,
       });
     }
+    
     const hasedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({ name, email, password: hasedPassword, role });
     await newUser.save();
