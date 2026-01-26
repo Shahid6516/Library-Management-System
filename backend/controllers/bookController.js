@@ -40,29 +40,43 @@ export const addBook = async (req, res) => {
     await newBook.save();
 
     res.status(201).json({
-        success:true,
-        message:"Book Added Successfully!",
-        newBook
-    })
+      success: true,
+      message: "Book Added Successfully!",
+      newBook,
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
 export const getAllBooks = async (req, res) => {
   try {
     const allBooks = await Book.find();
-return res.status(200).json({
-    message:"Book find successfully",
-    allBooks
-})
+    return res.status(200).json({
+      message: "Book find successfully",
+      allBooks,
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
-
 
 export const getBookById = async (req, res) => {
   try {
     const { id } = req.params;
-    const book = await
+    const book = await Book.findById(id);
+    if (!book) {
+      return res.status(404).json({
+        success: false,
+        message: "Book not found!",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Book found successfully!",
+      book,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
