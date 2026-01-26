@@ -61,3 +61,8 @@ return res.status(200).json({
   }
 };
 
+
+export const getBookById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const book = await
