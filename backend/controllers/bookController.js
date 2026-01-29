@@ -53,6 +53,7 @@ export const getAllBooks = async (req, res) => {
   try {
     const allBooks = await Book.find();
     return res.status(200).json({
+      success:true,
       message: "Book find successfully",
       allBooks,
     });
@@ -80,3 +81,5 @@ export const getBookById = async (req, res) => {
     console.log(error);
   }
 };
+
+ 
